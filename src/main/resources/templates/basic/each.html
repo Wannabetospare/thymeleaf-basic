@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>기본 테이블</h1>
+<table border="1">
+    <tr>
+        <th>username</th>
+        <th>age</th>
+    </tr>
+    <tr th:each="user : ${users}">  <!--리스트형으로 만들어진 users-->
+        <td th:text="${user.username}">username</td> <!--리스트형 users 에서 username 가져오기-->
+        <td th:text="${user.age}">0</td> <!--리스트형 users 에서 age 가져오기-->
+    </tr>
+</table>
+<h1>반복 상태 유지</h1>
+<table border="1">
+    <tr>
+        <th>count</th>
+        <th>username</th>
+        <th>age</th>
+        <th>etc</th>
+    </tr>
+    <tr th:each="user, userStat : ${users}"> <!--user 로 users를 하나씩 받고, 선언한 user 에 Stat을 붙여서 속성을 나타낸다.-->
+        <td th:text="${userStat.count}">username</td>
+        <td th:text="${user.username}">username</td>
+        <td th:text="${user.age}">0</td>
+        <td>
+            index = <span th:text="${userStat.index}"></span> <!--0부터 시작-->
+            count = <span th:text="${userStat.count}"></span> <!--1부터 시작-->
+            size = <span th:text="${userStat.size}"></span> <!-- 전체 사이즈-->
+            even? = <span th:text="${userStat.even}"></span> <!--홀수인지 확인-->
+            odd? = <span th:text="${userStat.odd}"></span> <!--짝수인지 확인-->
+            first? = <span th:text="${userStat.first}"></span> <!--첫번째 인지-->
+            last? = <span th:text="${userStat.last}"></span> <!--마지막인지-->
+            current = <span th:text="${userStat.current}"></span> <!--현재 객체-->
+        </td>
+    </tr>
+</table>
+</body>
+</html>
